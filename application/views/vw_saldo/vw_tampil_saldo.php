@@ -32,7 +32,7 @@
 
                 <div class="row">
                     <div class="col-sm-12" id="id_users">
-                        <table id="tb_kategori" class="table table-bordered table-hover" width="100%">
+                        <table id="tb_saldo" class="table table-bordered table-hover" width="100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -53,7 +53,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Tambah User Baru</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Input Saldo Masuk</h5>
                         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button> -->
@@ -63,77 +63,46 @@
                             <div class="col-xs-12">
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" id="keterangan" placeholder="Masukkan Keterangan" class="col-xs-10 col-sm-9" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Note </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" id="note" placeholder="Masukkan Note" class="col-xs-10 col-sm-9" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Aktif </label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tanggal </label>
                                         <div class="col-sm-4">
-                                            <select class="form-control" id="aktif">
-                                                <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
-                                            </select>
+                                            <div class="input-group">
+                                                <input class="form-control date-picker" id="tanggal" type="text" data-date-format="dd-mm-yyyy" />
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar bigger-110"></i>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">Close</button>
-                                        <button type="button" onclick="func_add_ket()" class="btn btn-primary btn-md">Save data</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-        <!-- Modal edit kategori -->
-        <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Tambah User Baru</h5>
-                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button> -->
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <form class="form-horizontal" role="form">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Keterangan </label>
-                                        <div class="col-sm-9">
-                                            <input type="hidden" id="id_kategori" placeholder="Masukkan Keterangan" class="col-xs-10 col-sm-9" required>
-                                            <input type="text" id="edit_keterangan" placeholder="Masukkan Keterangan" class="col-xs-10 col-sm-9" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Note </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" id="edit_note" placeholder="Masukkan Note" class="col-xs-10 col-sm-9" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Aktif </label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Kategori </label>
                                         <div class="col-sm-4">
-                                            <select class="form-control" id="edit_aktif">
-                                                <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
-                                            </select>
+                                            <select class="form-control" id="pilih_kategori"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Saldo (dalam USD)</label>
+                                        <div class="col-sm-9">
+                                            <input type="number" id="saldo" placeholder="Masukkan Total" class="col-xs-10 col-sm-9" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nilai Tukar Rupiah per Dolar </label>
+                                        <div class="col-sm-9">
+                                            <input type="number" onkeyup="rpFunc()" onkeydown="rpFunc()" id="nt_rp" placeholder="Masukkan Nilai Tukar Rupiah Hari Ini" class="col-xs-10 col-sm-7" required>&nbsp;
+                                            <label id="lb_rp" class="control-label no-padding-right" for=""></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nilai Tukar Real per Dolar </label>
+                                        <div class="col-sm-9">
+                                            <input type="number" onkeyup="rlFunc()" onkeydown="rlFunc()" id="nt_rl" placeholder="Masukkan Nilai Tukar Real Hari Ini" class="col-xs-10 col-sm-7" required>&nbsp;
+                                            <label id="lb_rl" class="control-label no-padding-right" for=""></label>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary btn-md" data-dismiss="modal">Close</button>
-                                        <button type="button" onclick="func_edit_ket()" class="btn btn-primary btn-md">Save update</button>
+                                        <button type="button" onclick="func_add_saldo()" class="btn btn-primary btn-md">Save data</button>
                                     </div>
                                 </form>
                             </div>
@@ -148,21 +117,52 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer></script>
+<script src="<?= base_url(); ?>templates/admin_temp/assets/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         var keyword = '';
-        list_kategori(keyword);
+        list_kategori();
+        list_saldo(keyword);
     });
+    $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        })
+        //show datepicker when clicking on the icon
+        .next().on(ace.click_event, function() {
+            $(this).prev().focus();
+        });
 
     function cariFunc() {
         var keypad = $('#cari').val();
-        list_kategori(keypad);
+        list_saldo(keypad);
     }
 
-    function list_kategori(keyword) {
-        console.log('tes');
-        $('#tb_kategori').dataTable().fnDestroy();
-        $('#tb_kategori').dataTable({
+    function list_kategori() {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pengeluaran/list_kategori'); ?>",
+            dataType: "JSON",
+            beforeSend: function() {},
+            cache: false,
+            data: '',
+            success: function(data) {
+                $.each(data, function(index) {
+                    var opsi_cmb_kategori = '<option value="' + data[index].keterangan + '">' + data[index]
+                        .keterangan + '</option>';
+                    $('#pilih_kategori').append(opsi_cmb_kategori);
+                });
+                // tableKontrak();
+            },
+            error: function(request) {
+                console.log(request.responseText);
+            }
+        });
+    }
+
+    function list_saldo(keyword) {
+        $('#tb_saldo').dataTable().fnDestroy();
+        $('#tb_saldo').dataTable({
             "paging": true,
             "scrollY": true,
             "scrollX": true,
@@ -178,10 +178,10 @@
             "order": [],
             "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {},
             "ajax": {
-                "url": "<?php echo site_url('kategori/list_kategori'); ?>",
+                "url": "<?php echo site_url('saldo/list_saldo'); ?>",
                 "type": "POST",
                 "data": {
-                    'keyword': keyword
+                    'keyword': keyword,
                 },
                 "error": function(request) {
                     // alert(request.responseText);
@@ -202,20 +202,33 @@
         $('#modalAdd').modal('show');
     }
 
-    function func_edit(id_kategori, keterangan, note, aktif) {
-        $('#modalEdit').modal('show');
-        $('#id_kategori').val(id_kategori);
-        $('#edit_keterangan').val(keterangan);
-        $('#edit_note').val(note);
-        $('#edit_aktif').val(aktif);
-        // console.log(id_kategori, keterangan, note, aktif);
+    // function func_edit(id_kategori, keterangan, note, aktif) {
+    //     $('#modalEdit').modal('show');
+    //     $('#id_kategori').val(id_kategori);
+    //     $('#edit_keterangan').val(keterangan);
+    //     $('#edit_note').val(note);
+    //     $('#edit_aktif').val(aktif);
+    //     // console.log(id_kategori, keterangan, note, aktif);
+    // }
+    function rpFunc() {
+        var saldo = $('#saldo').val();
+        var ntRp = $('#nt_rp').val();
+        $('#lb_rp').text('IDR ' + saldo * ntRp);
     }
 
-    function func_add_ket() {
-        var ket = $('#keterangan').val();
-        var note = $('#note').val();
-        var aktif = $('#aktif option:selected').val();
-        if (ket == '' || note == '') {
+    function rlFunc() {
+        var saldo = $('#saldo').val();
+        var ntRl = $('#nt_rl').val();
+        $('#lb_rl').text('SAR ' + saldo * ntRl);
+    }
+
+    function func_add_saldo() {
+        var tanggal = $('#tanggal').val();
+        var kategori = $('#pilih_kategori option:selected').val();
+        var saldo = $('#saldo').val();
+        var nt_rp = $('#nt_rp').val();
+        var nt_rl = $('#nt_rl').val();
+        if (tanggal == '' || tanggal == '' || kategori == '' || saldo == '' || nt_rp == '' || nt_rl == '') {
             swal('Field tidak boleh kosong!', {
                 icon: "error"
             });
@@ -223,29 +236,35 @@
             // console.log(ket, note, aktif);
             $.ajax({
                 type: "POST",
-                url: "<?php echo site_url('kategori/add_kategori'); ?>",
+                url: "<?php echo site_url('saldo/add_saldo'); ?>",
                 dataType: "JSON",
                 beforeSend: function() {},
                 cache: false,
                 data: {
-                    'ket': ket,
-                    'note': note,
-                    'aktif': aktif,
+                    'tanggal': tanggal,
+                    'kategori': kategori,
+                    'nt_rp': nt_rp,
+                    'nt_rl': nt_rl,
+                    'saldo': saldo,
                 },
                 success: function(data) {
                     console.log(data);
                     if (data == false) {
-                        swal('Gagal menambahkan kategori! :(', {
+                        swal('Gagal menambahkan saldo! :(', {
                             icon: 'error'
                         });
                     } else {
-                        swal('Kategori berhasil ditambahkan! :)', {
+                        swal('Saldo berhasil ditambahkan! :)', {
                             icon: 'success'
                         });
                         $('#modalAdd').modal('hide');
-                        $('#keterangan').val('');
-                        $('#note').val('');
-                        list_kategori('');
+                        $('#tanggal').val();
+                        $('#pilih_kategori option:selected').val();
+                        $('#keterangan').val();
+                        $('#saldo').val();
+                        $('#nt_rp').val();
+                        $('#nt_rl').val();
+                        // list_kategori('');
                     }
                 },
                 error: function(request) {

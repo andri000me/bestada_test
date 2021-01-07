@@ -18,4 +18,16 @@ class Saldo extends CI_Controller
         $data = ['title' => 'Saldo'];
         $this->template->load('template', 'vw_saldo/vw_tampil_saldo', $data);
     }
+
+    function add_saldo()
+    {
+        $data = $this->M_saldo->add_saldo();
+        echo json_encode($data);
+    }
+
+    function list_saldo()
+    {
+        $data = $this->M_saldo->list_saldo();
+        echo json_encode($data);
+    }
 }

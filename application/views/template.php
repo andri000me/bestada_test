@@ -109,39 +109,8 @@
                 } catch (e) {}
             </script>
 
-            <!-- <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                    <button class="btn btn-success">
-                        <i class="ace-icon fa fa-signal"></i>
-                    </button>
-
-                    <button class="btn btn-info">
-                        <i class="ace-icon fa fa-pencil"></i>
-                    </button>
-
-                    <button class="btn btn-warning">
-                        <i class="ace-icon fa fa-users"></i>
-                    </button>
-
-                    <button class="btn btn-danger">
-                        <i class="ace-icon fa fa-cogs"></i>
-                    </button>
-                </div>
-
-                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-                    <span class="btn btn-success"></span>
-
-                    <span class="btn btn-info"></span>
-
-                    <span class="btn btn-warning"></span>
-
-                    <span class="btn btn-danger"></span>
-                </div> 
-            </div>-->
-            <!-- /.sidebar-shortcuts -->
-
             <ul class="nav nav-list">
-                <li class="">
+                <li id="Dashboard" class="">
                     <a href="index.html">
                         <i class="menu-icon fa fa-tachometer"></i>
                         <span class="menu-text"> Dashboard </span>
@@ -150,7 +119,7 @@
                     <b class="arrow"></b>
                 </li>
 
-                <li class="">
+                <li id="Saldo" class="">
                     <a href="<?= base_url(); ?>saldo">
                         <i class="menu-icon fa fa-list-alt"></i>
                         <span class="menu-text"> Saldo </span>
@@ -158,7 +127,7 @@
 
                     <b class="arrow"></b>
                 </li>
-                <li class="">
+                <li id="Pengeluaran" class="">
                     <a href="<?= base_url(); ?>pengeluaran">
                         <i class="menu-icon fa fa-list-alt"></i>
                         <span class="menu-text"> Pengeluaran </span>
@@ -166,7 +135,7 @@
 
                     <b class="arrow"></b>
                 </li>
-                <li class="">
+                <li id="Kategori" class="">
                     <a href="<?= base_url(); ?>kategori">
                         <i class="menu-icon fa fa-list-alt"></i>
                         <span class="menu-text"> Kategori </span>
@@ -215,7 +184,9 @@
 <script src="assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
     <script type="text/javascript">
-        if ('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+        $(document).ready(function() {
+            $('#<?= $title; ?>').addClass("active");
+        });
     </script>
     <script src="<?= base_url(); ?>templates/admin_temp/assets/js/bootstrap.min.js"></script>
 
