@@ -60,9 +60,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">Input Data Pengeluaran</h5>
-                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button> -->
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -95,7 +92,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Total </label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="total" placeholder="Masukkan Total" class="col-xs-10 col-sm-9" />
+                                            <input type="number" id="total" placeholder="Masukkan Total" class="col-xs-10 col-sm-9" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -276,6 +273,11 @@
 
     function func_add() {
         $('#modalAdd').modal('show');
+        $('#pilih_kategori').find('option')
+            .remove()
+            .end()
+            .append('')
+            .val('whatever');
         $.ajax({
             type: "POST",
             url: "<?php echo site_url('pengeluaran/list_kategori'); ?>",
@@ -289,6 +291,26 @@
                         .keterangan + '</option>';
                     $('#pilih_kategori').append(opsi_cmb_kategori);
                 });
+                // tableKontrak();
+            },
+            error: function(request) {
+                console.log(request.responseText);
+            }
+        });
+        var kategori = $('#pilih_kategori').val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pengeluaran/cek_sisa_saldo'); ?>",
+            dataType: "JSON",
+            beforeSend: function() {},
+            cache: false,
+            data: {
+                'kategori': kategori
+            },
+            success: function(data) {
+                console.log('Ok');
+                console.log(data);
+
                 // tableKontrak();
             },
             error: function(request) {

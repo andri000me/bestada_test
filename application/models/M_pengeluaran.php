@@ -151,4 +151,11 @@ class M_Pengeluaran extends CI_Model
         return $this->db->delete('tb_pengeluaran');
         // var_dump($email.$nama);
     }
+
+    function cek_sisa_saldo()
+    {
+        $kategori = $this->input->post('kategori');
+        return $query = "SELECT a.id_saldo, a.saldo_usd, a.kategori, a.nilai_tukar_rp, SUM(b.total_rp) AS sisa_saldo FROM tb_saldo a, tb_pengeluaran b WHERE a.kategori = '$kategori' AND a.kategori = b.kategori ORDER BY id_saldo ASC";
+        $this->db->query($query)->result();
+    }
 }

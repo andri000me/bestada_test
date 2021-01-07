@@ -47,4 +47,10 @@ class Pengeluaran extends CI_Controller
         $data = $this->M_pengeluaran->del_pengeluaran();
         echo json_encode($data);
     }
+
+    public function cek_sisa_saldo()
+    {
+        $data = $this->M_pengeluaran->cek_sisa_saldo();
+        echo json_encode($data);
+    }
 }
